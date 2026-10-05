@@ -1,0 +1,744 @@
+@import "tailwindcss";
+
+/* =========================================================
+   ELEVORA / TECH COMPANY — GLOBAL DESIGN SYSTEM
+   Logo Theme: Pink + Deep Blue
+   ========================================================= */
+
+:root {
+  /* ---------- BRAND COLORS ---------- */
+  --brand-pink: #c46d8d;
+  --brand-pink-light: #e7a8bd;
+  --brand-pink-soft: #f8e8ee;
+
+  --brand-blue: #4e617c;
+  --brand-blue-dark: #26364c;
+  --brand-blue-light: #8c9caf;
+  --brand-blue-soft: #edf1f6;
+
+  /* ---------- MAIN THEME ---------- */
+  --background: #ffffff;
+  --foreground: #172033;
+
+  --surface: #ffffff;
+  --surface-soft: #f7f8fb;
+  --surface-blue: #f1f4f8;
+  --surface-pink: #fbf1f5;
+
+  --border: #e5e8ee;
+  --border-dark: #d4d9e2;
+
+  /* ---------- TEXT ---------- */
+  --text-primary: #172033;
+  --text-secondary: #596477;
+  --text-muted: #8791a1;
+
+  /* ---------- GRADIENTS ---------- */
+  --gradient-brand:
+    linear-gradient(
+      135deg,
+      #c46d8d 0%,
+      #9e7892 45%,
+      #4e617c 100%
+    );
+
+  --gradient-soft:
+    linear-gradient(
+      135deg,
+      #fff5f8 0%,
+      #f4f6fa 50%,
+      #edf1f6 100%
+    );
+
+  --gradient-hero:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(196, 109, 141, 0.16),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 80% 30%,
+      rgba(78, 97, 124, 0.16),
+      transparent 38%
+    ),
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #fafbfc 50%,
+      #f4f6f9 100%
+    );
+
+  --gradient-dark:
+    linear-gradient(
+      135deg,
+      #172033 0%,
+      #26364c 55%,
+      #4e617c 100%
+    );
+
+  /* ---------- SHADOWS ---------- */
+  --shadow-sm:
+    0 4px 14px rgba(23, 32, 51, 0.06);
+
+  --shadow-md:
+    0 12px 35px rgba(23, 32, 51, 0.09);
+
+  --shadow-lg:
+    0 25px 70px rgba(23, 32, 51, 0.12);
+
+  --shadow-brand:
+    0 20px 60px rgba(196, 109, 141, 0.18);
+
+  /* ---------- RADIUS ---------- */
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --radius-xl: 38px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-brand-pink: var(--brand-pink);
+  --color-brand-blue: var(--brand-blue);
+
+  --color-surface: var(--surface);
+  --color-surface-soft: var(--surface-soft);
+
+  --color-border: var(--border);
+
+  --font-sans: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+  background: var(--brand-pink);
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   PREMIUM SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f6f8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--brand-pink),
+    var(--brand-blue)
+  );
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-blue);
+}
+
+
+/* =========================================================
+   PREMIUM CONTAINER
+   ========================================================= */
+
+.container-premium {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (min-width: 768px) {
+  .container-premium {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-premium {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+
+/* =========================================================
+   HERO BACKGROUND
+   ========================================================= */
+
+.hero-background {
+  position: relative;
+  overflow: hidden;
+  background: var(--gradient-hero);
+}
+
+.hero-background::before {
+  content: "";
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  top: -220px;
+  left: -180px;
+
+  background: rgba(196, 109, 141, 0.10);
+
+  border-radius: 50%;
+
+  filter: blur(10px);
+
+  pointer-events: none;
+}
+
+.hero-background::after {
+  content: "";
+
+  position: absolute;
+
+  width: 550px;
+  height: 550px;
+
+  right: -240px;
+  top: -180px;
+
+  background: rgba(78, 97, 124, 0.11);
+
+  border-radius: 50%;
+
+  filter: blur(10px);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   BRAND GRADIENT TEXT
+   ========================================================= */
+
+.text-brand-gradient {
+  background: var(--gradient-brand);
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+}
+
+
+/* =========================================================
+   PREMIUM GLASS
+   ========================================================= */
+
+.glass {
+  background: rgba(255, 255, 255, 0.72);
+
+  border: 1px solid rgba(255, 255, 255, 0.8);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 12px 40px rgba(23, 32, 51, 0.07);
+}
+
+.glass-dark {
+  background: rgba(23, 32, 51, 0.82);
+
+  border: 1px solid rgba(255, 255, 255, 0.10);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+
+/* =========================================================
+   PREMIUM CARD
+   ========================================================= */
+
+.premium-card {
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-sm);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.premium-card:hover {
+  transform: translateY(-7px);
+
+  border-color: rgba(196, 109, 141, 0.25);
+
+  box-shadow: var(--shadow-md);
+}
+
+
+/* =========================================================
+   BRAND BUTTON
+   ========================================================= */
+
+.btn-brand {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  padding: 14px 24px;
+
+  border-radius: 999px;
+
+  background: var(--gradient-brand);
+
+  color: #ffffff;
+
+  font-weight: 600;
+
+  box-shadow:
+    0 10px 28px rgba(196, 109, 141, 0.20);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.btn-brand:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 16px 38px rgba(196, 109, 141, 0.28);
+}
+
+
+/* =========================================================
+   OUTLINE BUTTON
+   ========================================================= */
+
+.btn-outline-brand {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  padding: 13px 23px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.7);
+
+  border: 1px solid var(--border-dark);
+
+  color: var(--brand-blue-dark);
+
+  font-weight: 600;
+
+  transition:
+    all 0.25s ease;
+}
+
+.btn-outline-brand:hover {
+  border-color: var(--brand-pink);
+
+  color: var(--brand-pink);
+
+  background: var(--surface-pink);
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   SECTION TITLE
+   ========================================================= */
+
+.section-eyebrow {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color: var(--brand-pink);
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+}
+
+.section-eyebrow::before {
+  content: "";
+
+  width: 26px;
+  height: 2px;
+
+  background: var(--brand-pink);
+
+  border-radius: 999px;
+}
+
+
+/* =========================================================
+   DECORATIVE DOT GRID
+   ========================================================= */
+
+.dot-grid {
+  background-image:
+    radial-gradient(
+      rgba(78, 97, 124, 0.20) 1px,
+      transparent 1px
+    );
+
+  background-size: 18px 18px;
+}
+
+
+/* =========================================================
+   SOFT GLOW
+   ========================================================= */
+
+.pink-glow {
+  box-shadow:
+    0 0 80px rgba(196, 109, 141, 0.18);
+}
+
+.blue-glow {
+  box-shadow:
+    0 0 80px rgba(78, 97, 124, 0.18);
+}
+
+
+/* =========================================================
+   FLOATING ANIMATION
+   ========================================================= */
+
+@keyframes floating {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-floating {
+  animation: floating 5s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   SOFT PULSE
+   ========================================================= */
+
+@keyframes softPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.85;
+    transform: scale(1.05);
+  }
+}
+
+.animate-soft-pulse {
+  animation: softPulse 4s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   REVEAL ANIMATION
+   ========================================================= */
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-reveal {
+  animation: revealUp 0.7s ease-out both;
+}
+
+
+/* =========================================================
+   MARQUEE
+   ========================================================= */
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
+
+/* =========================================================
+   DARK PREMIUM SECTION
+   ========================================================= */
+
+.dark-section {
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(196, 109, 141, 0.15),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(78, 97, 124, 0.20),
+      transparent 35%
+    ),
+    var(--gradient-dark);
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   TECH STACK LOGO CARD
+   ========================================================= */
+
+.tech-card {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 90px;
+
+  padding: 20px;
+
+  background: rgba(255, 255, 255, 0.75);
+
+  border: 1px solid var(--border);
+
+  border-radius: 20px;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.tech-card:hover {
+  transform: translateY(-5px);
+
+  border-color: rgba(196, 109, 141, 0.35);
+
+  box-shadow:
+    0 15px 35px rgba(23, 32, 51, 0.08);
+}
+
+
+/* =========================================================
+   IMAGE HOVER
+   ========================================================= */
+
+.image-hover {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.image-hover img {
+  transition:
+    transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.image-hover:hover img {
+  transform: scale(1.05);
+}
+
+
+/* =========================================================
+   CUSTOM HR
+   ========================================================= */
+
+.brand-line {
+  width: 100%;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(196, 109, 141, 0.45),
+      rgba(78, 97, 124, 0.45),
+      transparent
+    );
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+
+  border-color: var(--brand-pink) !important;
+
+  box-shadow:
+    0 0 0 4px rgba(196, 109, 141, 0.10);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .container-premium {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .hero-background::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .hero-background::after {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+@keyframes tech-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes tech-marquee-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.tech-marquee {
+  animation: tech-marquee 32s linear infinite;
+}
+
+.tech-marquee-reverse {
+  animation: tech-marquee-reverse 36s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-marquee,
+  .tech-marquee-reverse {
+    animation: none;
+  }
+}
