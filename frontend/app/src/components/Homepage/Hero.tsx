@@ -85,18 +85,18 @@ export default function Hero() {
 
             {/* Main Heading */}
 
-            <h1 className="text-[clamp(3rem,6vw,6.3rem)] font-semibold leading-[0.96] tracking-[-0.055em] text-[#172033]">
-              Technology
-              <br />
+          <h1 className="text-[clamp(2.5rem,5vw,4.8rem)] font-medium leading-[1.02] tracking-[-0.045em] text-[#172033]">
+  Technology
+  <br />
 
-              <span className="text-brand-gradient">
-                That Moves
-              </span>
+  <span className="text-brand-gradient">
+    That Moves
+  </span>
 
-              <br />
+  <br />
 
-              Business Forward.
-            </h1>
+  Business Forward.
+</h1>
 
             {/* Description */}
 

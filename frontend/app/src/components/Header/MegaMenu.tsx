@@ -23,9 +23,11 @@ export default function MegaMenu({
   const [activeGroup, setActiveGroup] =
     useState<MegaMenuGroup | null>(groups[0] ?? null);
 
-  /* ---------------------------------------------------------
-     RESET ACTIVE GROUP
-  --------------------------------------------------------- */
+  /*
+   * ---------------------------------------------------------
+   * RESET ACTIVE GROUP
+   * ---------------------------------------------------------
+   */
 
   useEffect(() => {
     if (isOpen) {
@@ -33,9 +35,11 @@ export default function MegaMenu({
     }
   }, [item, isOpen]);
 
-  /* ---------------------------------------------------------
-     ESCAPE KEY
-  --------------------------------------------------------- */
+  /*
+   * ---------------------------------------------------------
+   * ESCAPE KEY
+   * ---------------------------------------------------------
+   */
 
   useEffect(() => {
     if (!isOpen) return;
@@ -58,18 +62,10 @@ export default function MegaMenu({
   }
 
   /*
-    Techsaga-style compact navigation:
-
-    Main menu
-    ┌─────────────────────────┐
-    │ Software & Product   →  │────┐
-    │ IT Infrastructure     → │    │
-    │ Digital Marketing     → │    │ Services
-    │ UI / UX & Creative    → │    │
-    │ Testing & QA          → │    │
-    └─────────────────────────┘    │
-                                   └───────────
-  */
+   * ---------------------------------------------------------
+   * MEGA MENU
+   * ---------------------------------------------------------
+   */
 
   return (
     <div
@@ -84,13 +80,7 @@ export default function MegaMenu({
       "
       onMouseEnter={() => undefined}
     >
-      <div
-        className="
-          relative
-          flex
-          items-start
-        "
-      >
+      <div className="relative flex items-start">
         {/* =====================================================
             MAIN CATEGORY MENU
         ====================================================== */}
@@ -108,8 +98,6 @@ export default function MegaMenu({
           "
         >
           {groups.slice(0, 5).map((group) => {
-            const Icon = group.icon;
-
             const isActive =
               activeGroup?.title === group.title;
 
@@ -128,10 +116,11 @@ export default function MegaMenu({
                   gap-3
                   rounded-[12px]
                   px-3
-                  py-2.5
+                  py-3
                   text-left
                   transition-all
                   duration-200
+
                   ${
                     isActive
                       ? `
@@ -146,41 +135,7 @@ export default function MegaMenu({
                   }
                 `}
               >
-                {/* ICON */}
-
-                <span
-                  className={`
-                    flex
-                    h-9
-                    w-9
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-[10px]
-                    transition-all
-                    duration-200
-                    ${
-                      isActive
-                        ? `
-                          bg-[var(--brand-pink)]
-                          text-white
-                        `
-                        : `
-                          bg-[var(--blue-soft)]
-                          text-[var(--brand-blue)]
-                          group-hover:bg-[var(--brand-pink)]
-                          group-hover:text-white
-                        `
-                    }
-                  `}
-                >
-                  <Icon
-                    size={16}
-                    strokeWidth={1.8}
-                  />
-                </span>
-
-                {/* TITLE */}
+                {/* CATEGORY TITLE */}
 
                 <span className="min-w-0 flex-1">
                   <span
@@ -192,6 +147,7 @@ export default function MegaMenu({
                       tracking-[-0.01em]
                       transition-colors
                       duration-200
+
                       ${
                         isActive
                           ? "text-[var(--brand-pink)]"
@@ -200,21 +156,6 @@ export default function MegaMenu({
                     `}
                   >
                     {group.title}
-                  </span>
-
-                  <span
-                    className="
-                      mt-0.5
-                      block
-                      truncate
-                      text-[10px]
-                      text-[var(--text-secondary)]
-                    "
-                  >
-                    {group.items.length}{" "}
-                    {group.items.length === 1
-                      ? "service"
-                      : "services"}
                   </span>
                 </span>
 
@@ -227,6 +168,7 @@ export default function MegaMenu({
                     shrink-0
                     transition-all
                     duration-200
+
                     ${
                       isActive
                         ? `
@@ -315,9 +257,7 @@ export default function MegaMenu({
                 <ChevronRight
                   size={13}
                   strokeWidth={1.8}
-                  className="
-                    text-[var(--brand-blue)]
-                  "
+                  className="text-[var(--brand-blue)]"
                 />
               </Link>
             </div>
@@ -325,104 +265,84 @@ export default function MegaMenu({
             {/* SERVICES */}
 
             <div className="p-1">
-              {activeGroup.items.map((service) => {
-                const Icon = service.icon;
+              {activeGroup.items.map((service) => (
+                <Link
+                  key={service.title}
+                  href={service.href}
+                  onClick={onClose}
+                  className="
+                    group
+                    flex
+                    items-center
+                    gap-3
+                    rounded-[11px]
+                    px-2.5
+                    py-2
+                    transition-all
+                    duration-200
+                    hover:bg-[var(--surface-pink)]
+                  "
+                >
+                  {/* SERVICE INDICATOR */}
 
-                return (
-                  <Link
-                    key={service.title}
-                    href={service.href}
-                    onClick={onClose}
+                  <span
                     className="
-                      group
                       flex
+                      h-8
+                      w-8
+                      shrink-0
                       items-center
-                      gap-3
-                      rounded-[11px]
-                      px-2.5
-                      py-2
+                      justify-center
+                      rounded-[9px]
+                      bg-[var(--blue-soft)]
+                      text-[10px]
+                      font-semibold
+                      text-[var(--brand-blue)]
                       transition-all
                       duration-200
-                      hover:bg-[var(--surface-pink)]
+                      group-hover:bg-[var(--brand-pink)]
+                      group-hover:text-white
                     "
                   >
-                    {/* SERVICE ICON */}
+                    →
+                  </span>
 
+                  {/* SERVICE NAME */}
+
+                  <span className="min-w-0 flex-1">
                     <span
                       className="
-                        flex
-                        h-8
-                        w-8
-                        shrink-0
-                        items-center
-                        justify-center
-                        rounded-[9px]
-                        bg-[var(--blue-soft)]
-                        text-[var(--brand-blue)]
-                        transition-all
+                        block
+                        truncate
+                        text-[11px]
+                        font-semibold
+                        text-[var(--text-primary)]
+                        transition-colors
                         duration-200
-                        group-hover:bg-[var(--brand-pink)]
-                        group-hover:text-white
+                        group-hover:text-[var(--brand-pink)]
                       "
                     >
-                      <Icon
-                        size={14}
-                        strokeWidth={1.8}
-                      />
+                      {service.title}
                     </span>
+                  </span>
 
-                    {/* SERVICE NAME */}
+                  {/* ARROW */}
 
-                    <span className="min-w-0 flex-1">
-                      <span
-                        className="
-                          block
-                          truncate
-                          text-[11px]
-                          font-semibold
-                          text-[var(--text-primary)]
-                          transition-colors
-                          duration-200
-                          group-hover:text-[var(--brand-pink)]
-                        "
-                      >
-                        {service.title}
-                      </span>
-
-                      {service.description && (
-                        <span
-                          className="
-                            mt-0.5
-                            block
-                            truncate
-                            text-[9px]
-                            leading-4
-                            text-[var(--text-secondary)]
-                          "
-                        >
-                          {service.description}
-                        </span>
-                      )}
-                    </span>
-
-                    {/* ARROW */}
-
-                    <ChevronRight
-                      size={13}
-                      strokeWidth={1.8}
-                      className="
-                        shrink-0
-                        text-[var(--brand-blue-light)]
-                        opacity-0
-                        transition-all
-                        duration-200
-                        group-hover:translate-x-0.5
-                        group-hover:opacity-100
-                      "
-                    />
-                  </Link>
-                );
-              })}
+                  <ChevronRight
+                    size={13}
+                    strokeWidth={1.8}
+                    className="
+                      shrink-0
+                      text-[var(--brand-blue-light)]
+                      opacity-0
+                      transition-all
+                      duration-200
+                      group-hover:translate-x-0.5
+                      group-hover:opacity-100
+                    "
+                  />
+                </Link>
+              ))}
             </div>
           </div>
         )}
