@@ -58,7 +58,7 @@ export default function MobileMenu({
 
   /*
    * ---------------------------------------------------------
-   * TOGGLE SERVICE GROUP
+   * TOGGLE GROUP
    * ---------------------------------------------------------
    */
 
@@ -244,15 +244,13 @@ export default function MobileMenu({
                     </Link>
 
                     {/* =================================================
-                        SERVICE GROUPS
+                        GROUPS
                     ================================================== */}
 
                     <div className="space-y-1">
                       {item.groups?.map((group) => {
                         const isGroupOpen =
                           activeGroup === group.title;
-
-                        const GroupIcon = group.icon;
 
                         return (
                           <div
@@ -279,64 +277,24 @@ export default function MobileMenu({
                                 flex
                                 w-full
                                 items-center
-                                gap-3
-                                px-3
-                                py-3
+                                justify-between
+                                px-4
+                                py-3.5
                                 text-left
                               "
                             >
-                              {/* ICON */}
-
-                              <span
-                                className="
-                                  flex
-                                  h-9
-                                  w-9
-                                  shrink-0
-                                  items-center
-                                  justify-center
-                                  rounded-lg
-                                  bg-[var(--blue-soft)]
-                                  text-[var(--brand-blue)]
-                                "
-                              >
-                                <GroupIcon
-                                  size={17}
-                                  strokeWidth={1.8}
-                                />
-                              </span>
-
-                              {/* TITLE */}
+                              {/* GROUP TITLE */}
 
                               <span
                                 className="
                                   min-w-0
                                   flex-1
+                                  text-xs
+                                  font-semibold
+                                  text-[var(--text-primary)]
                                 "
                               >
-                                <span
-                                  className="
-                                    block
-                                    text-xs
-                                    font-semibold
-                                    text-[var(--text-primary)]
-                                  "
-                                >
-                                  {group.title}
-                                </span>
-
-                                <span
-                                  className="
-                                    mt-0.5
-                                    block
-                                    line-clamp-1
-                                    text-[11px]
-                                    leading-4
-                                    text-[var(--text-secondary)]
-                                  "
-                                >
-                                  {group.description}
-                                </span>
+                                {group.title}
                               </span>
 
                               {/* CHEVRON */}
@@ -406,105 +364,59 @@ export default function MobileMenu({
                                 {/* SERVICES */}
 
                                 <div className="space-y-0.5">
-                                  {group.items.map((service) => {
-                                    const ServiceIcon =
-                                      service.icon;
+                                  {group.items.map((service) => (
+                                    <Link
+                                      key={service.title}
+                                      href={service.href}
+                                      onClick={closeMenu}
+                                      className="
+                                        group
+                                        flex
+                                        items-center
+                                        justify-between
+                                        rounded-lg
+                                        px-3
+                                        py-2.5
+                                        transition-all
+                                        duration-300
+                                        hover:bg-[var(--background)]
+                                      "
+                                    >
+                                      {/* SERVICE TITLE */}
 
-                                    return (
-                                      <Link
-                                        key={service.title}
-                                        href={service.href}
-                                        onClick={closeMenu}
+                                      <span
                                         className="
-                                          group
-                                          flex
-                                          items-center
-                                          gap-3
-                                          rounded-lg
-                                          px-3
-                                          py-2.5
-                                          transition-all
+                                          min-w-0
+                                          flex-1
+                                          text-xs
+                                          font-medium
+                                          text-[var(--text-primary)]
+                                          transition-colors
                                           duration-300
-                                          hover:bg-[var(--background)]
+                                          group-hover:text-[var(--brand-pink)]
                                         "
                                       >
-                                        {/* SERVICE ICON */}
+                                        {service.title}
+                                      </span>
 
-                                        <span
-                                          className="
-                                            flex
-                                            h-8
-                                            w-8
-                                            shrink-0
-                                            items-center
-                                            justify-center
-                                            rounded-lg
-                                            bg-[var(--blue-soft)]
-                                            text-[var(--brand-blue)]
-                                            transition-all
-                                            duration-300
-                                            group-hover:bg-[var(--brand-blue)]
-                                            group-hover:text-[var(--surface-pink)]
-                                          "
-                                        >
-                                          <ServiceIcon
-                                            size={15}
-                                            strokeWidth={1.8}
-                                          />
-                                        </span>
+                                      {/* ARROW */}
 
-                                        {/* SERVICE CONTENT */}
-
-                                        <span className="min-w-0 flex-1">
-                                          <span
-                                            className="
-                                              block
-                                              text-xs
-                                              font-medium
-                                              text-[var(--text-primary)]
-                                              transition-colors
-                                              duration-300
-                                              group-hover:text-[var(--brand-pink)]
-                                            "
-                                          >
-                                            {service.title}
-                                          </span>
-
-                                          {service.description && (
-                                            <span
-                                              className="
-                                                mt-0.5
-                                                block
-                                                line-clamp-1
-                                                text-[10px]
-                                                leading-4
-                                                text-[var(--text-secondary)]
-                                              "
-                                            >
-                                              {service.description}
-                                            </span>
-                                          )}
-                                        </span>
-
-                                        {/* ARROW */}
-
-                                        <ArrowRight
-                                          size={14}
-                                          strokeWidth={1.7}
-                                          className="
-                                            shrink-0
-                                            text-[var(--text-secondary)]
-                                            opacity-0
-                                            transition-all
-                                            duration-300
-                                            group-hover:translate-x-0.5
-                                            group-hover:text-[var(--brand-pink)]
-                                            group-hover:opacity-100
-                                          "
-                                        />
-                                      </Link>
-                                    );
-                                  })}
+                                      <ArrowRight
+                                        size={14}
+                                        strokeWidth={1.7}
+                                        className="
+                                          shrink-0
+                                          text-[var(--text-secondary)]
+                                          opacity-0
+                                          transition-all
+                                          duration-300
+                                          group-hover:translate-x-0.5
+                                          group-hover:text-[var(--brand-pink)]
+                                          group-hover:opacity-100
+                                        "
+                                      />
+                                    </Link>
+                                  ))}
                                 </div>
                               </div>
                             )}
